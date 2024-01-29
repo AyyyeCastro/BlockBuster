@@ -24,6 +24,7 @@ namespace BlockBuster.Models
         public virtual DbSet<Genre> Genres { get; set; }
         public virtual DbSet<Movie> Movies { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
+        public object Director { get; internal set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

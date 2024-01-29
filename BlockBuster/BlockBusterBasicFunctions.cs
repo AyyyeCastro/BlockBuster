@@ -55,6 +55,42 @@ namespace BlockBuster
             }
         }
 
+        // for homework
+        public static List<Movie> GetByGenre(int genreId)
+        {
+            using (var db = new SE407_BlockBusterContext())
+            {
+                return db.Movies.Where(m => m.GenreId == genreId).ToList();
+            }
+        }
 
+        public static List<Movie> GetByDirID(int directorId)
+        {
+            using (var db = new SE407_BlockBusterContext())
+            {
+                return db.Movies.Where(m => m.Director.DirectorId == directorId).ToList();
+            }
+        }
+
+        public static List<Movie> GetByDirLN(string dirLN)
+        {
+            using (var db = new SE407_BlockBusterContext())
+            {
+                // need to query last name prior, because Movies table only stored director ID. So search directors table, then find ID by the ln query. Then 
+                // get movies from this query.
+                var director = db.Directors.FirstOrDefault(d => d.LastName == dirLN);
+
+                return db.Movies.Where(m => m.DirectorId == director.DirectorId).ToList();
+            }
+        }
+
+
+        public static Movie GetByTitle(string title)
+        {
+            using (var db = new SE407_BlockBusterContext())
+            {
+                return db.Movies.FirstOrDefault(m => m.Title == title);
+            }
+        }
     }
 }
