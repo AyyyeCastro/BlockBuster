@@ -1,4 +1,5 @@
 ﻿using BlockBuster.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,8 @@ namespace BlockBuster
         {
             using (var db = new SE407_BlockBusterContext())
             {
-                return db.Movies.ToList();
+                return db.Movies.Include(m => m.Director).Include(m => m.Genre).ToList();
+
             }
         }
 
