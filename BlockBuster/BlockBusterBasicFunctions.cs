@@ -27,6 +27,7 @@ namespace BlockBuster
             }
         }
 
+
         public static List<Movie> GetAllCheckedOutMovies()
         {
             using (var db = new SE407_BlockBusterContext())
@@ -96,3 +97,4 @@ namespace BlockBuster
         }
     }
 }
+
